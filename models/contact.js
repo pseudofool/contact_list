@@ -43,7 +43,7 @@ const getContactFromDB = (data, callback) => {
 
 const updateContactInDB = (data, callback) => {
   const { name, phone, email } = data;
-  const query = `UPDATE contact_db SET name = ${name}, phone = ${phone}, email = ${email} WHERE email = ${email}`;
+  const query = `UPDATE contact_db SET name = ${connection.escape(name)}, phone = ${connection.escape(phone)}, email = ${connection.escape(email)} WHERE email = ${connection.escape(email)}`;
   connection.query(query, (error, result) => {
     if (error) {
       callback(error, null);
